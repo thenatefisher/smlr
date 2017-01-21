@@ -71,33 +71,24 @@ int main(int argc, char** argv) {
       return EXIT_FAILURE;
     }
 
-    while (1) {
-      char c = getc(stdin);
-
-      if (c == EOF) {
-        if (smlr_get_buf(smlr, buf, size + 1)) {
-          fprintf(stderr, "Error: Could not populate output buffer\n");
-          free(buf);
-          return EXIT_FAILURE;
-        }
-        printf("%s\n", buf);
-        break;
-      } else if (c == '\n') {
-        continue;
-      }
-
-      if (smlr_push(smlr, c)) {
+    uint8_t is_end = 0;
+    while(!is_end) {
+      if (smlr_push(smlr, getc(stdin), &is_end)) {
+        fprintf(stderr, "Error: Could not push character\n");
+        smlr_delete(smlr);
         free(buf);
         return EXIT_FAILURE;
       }
     }
 
-    if (smlr_delete(smlr)) {
-      fprintf(stderr, "Error: Could not delete smlr_t\n");
-      free(buf);
+    if (!smlr_get_buf(smlr, buf, size + 1)) {
+      fprintf(stdout, "%s\n", buf);
+    } else {
+      fprintf(stderr, "Error: Could not populate output buffer\n");
       return EXIT_FAILURE;
     }
 
+    smlr_delete(smlr);
     free(buf);
 
   } else {

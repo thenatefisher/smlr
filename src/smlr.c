@@ -18,8 +18,9 @@ const char ellipsis_str[ELLIPSIS_LEN + 1] = "...";
 smlr_t* smlr_new(size_t output_size, smlr_alignment_t alignment) {
 
   // check input preconditions
-  if (!output_size)
+  if (!output_size) {
     return NULL;
+  }
 
   smlr_t* smlr  = NULL;
   char*   p_buf = NULL;
@@ -72,9 +73,17 @@ int8_t smlr_delete(smlr_t* self) {
   return EXIT_SUCCESS;
 }
 
-int8_t smlr_push(smlr_t* self, const char c) {
-  if (!self)
+int8_t smlr_push(smlr_t* self, const char c, uint8_t* p_is_end) {
+  if (!self || !p_is_end) {
     return EXIT_FAILURE;
+  }
+
+  if (c == EOF) {
+    *p_is_end = 1;
+    return EXIT_SUCCESS;
+  } else if (c == '\n') {
+    return EXIT_SUCCESS;
+  }
 
   if ((self->align == ALIGN_LEFT) && (self->input_bytes >= self->buf_bytes)) {
     self->input_bytes++;
