@@ -3,7 +3,7 @@ BUILD_DIR   =build
 TESTS_DIR   =tests
 GTEST_DIR   =googletest/googletest
 GTEST_INC   =-I$(GTEST_DIR)/include -I$(GTEST_DIR)/include/gtest -I$(GTEST_DIR)/include/gtest/internal
-INSTALL_DIR =/opt/local/bin
+INSTALL_DIR =opt/local/bin
 
 all : $(BUILD_DIR)/rel/smlr
 
@@ -12,7 +12,7 @@ test : $(BUILD_DIR)/rel/smlr_ut
 	@$(BUILD_DIR)/rel/smlr_ut
 
 install : $(BUILD_DIR)/rel/smlr
-	cp $(BUILD_DIR)/rel/smlr $(INSTALL_DIR)/smlr
+	cp $^ $(DESTDIR)/$(INSTALL_DIR)
 
 clean :
 	rm -rf $(BUILD_DIR)

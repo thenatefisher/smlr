@@ -111,12 +111,12 @@ void usage() {
   printf("\t\tCan be either `left` or `right`\n");
   printf("\t\tDefault value is middle\n");
 
-  printf("\nEXAMPLES\n");
-  printf("git rev-parse --abbrev-ref HEAD | smlr -s 10 -a left\n");
-  printf("  > feat...-13\n");
-  printf("echo \"abcdefghijkl\" | smlr -s 10 -a right\n");
-  printf("  > ...ghijkl\n");
-  printf("date | smlr -s 10\n");
+  printf("\nExamples:\n");
+  printf("  > git rev-parse --abbrev-ref HEAD | smlr -s 10 -a left\n");
+  printf("  > feat...-13\n\n");
+  printf("  > echo \"abcdefghijkl\" | smlr -s 10 -a right\n");
+  printf("  > ...ghijkl\n\n");
+  printf("  > date | smlr -s 10\n");
   printf("  > Thu ...017\n\n");
 
 }
