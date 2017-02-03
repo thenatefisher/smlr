@@ -1,14 +1,18 @@
-SRC_DIR   = src
-BUILD_DIR = build
-TESTS_DIR = tests
-GTEST_DIR = googletest/googletest
-GTEST_INC = -I$(GTEST_DIR)/include -I$(GTEST_DIR)/include/gtest -I$(GTEST_DIR)/include/gtest/internal
+SRC_DIR     =src
+BUILD_DIR   =build
+TESTS_DIR   =tests
+GTEST_DIR   =googletest/googletest
+GTEST_INC   =-I$(GTEST_DIR)/include -I$(GTEST_DIR)/include/gtest -I$(GTEST_DIR)/include/gtest/internal
+INSTALL_DIR =/opt/local/bin
 
 all : $(BUILD_DIR)/rel/smlr
-	@git submodule	update --init
 
 test : $(BUILD_DIR)/rel/smlr_ut
+	@git submodule	update --init
 	@$(BUILD_DIR)/rel/smlr_ut
+
+install : $(BUILD_DIR)/rel/smlr
+	cp $(BUILD_DIR)/rel/smlr $(INSTALL_DIR)/smlr
 
 clean :
 	rm -rf $(BUILD_DIR)
