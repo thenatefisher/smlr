@@ -31,4 +31,9 @@ Repeat the string if it turns out to be equal, or smaller than, the size given:
 ```
 
 #### Installation
+
+**MacOS**
+Available via Macports: `sudo port install smlr`
+
+**General**
 Clone the repo and run a `make` to build it. If everything works out, you'll have a binary in `build/rel/smlr`. Symlink or copy that sucker to a path directory, such as `/usr/bin`.
