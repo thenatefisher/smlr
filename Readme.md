@@ -1,12 +1,12 @@
 # smlr
 Truncates `stdin` to a maximum fixed size, abbreviating the output if over the specified length. For example, make a giant git branch name more manageable for use in `PS1`.
 
-#### Usage
+### Usage
 `[source] | smlr [-s SIZE] [-a ALIGNMENT]`
 * `-s`: Size of output. If equal or greater than input, input is relayed to s unchanged"). Default value is 5.
 * `-a`: Alignment of output. Can be either middle (if option is omitted), `left` or `right`. Default is middle alignment.
 
-#### Examples
+### Examples
 Bring your git branch down to a fixed-size:
 ```
 > git rev-parse --abbrev-ref HEAD | smlr -s 10
@@ -30,7 +30,7 @@ Repeat the string if it turns out to be equal, or smaller than, the size given:
 > abc
 ```
 
-#### Installation
+### Installation
 
 **MacOS**  
 Available via Macports: `sudo port install smlr`
